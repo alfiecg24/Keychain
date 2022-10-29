@@ -6,6 +6,13 @@
 //
 
 import Foundation
+import Darwin
 
-print("Hello, World!")
+DispatchQueue.global().async {
+    parseCommandLine(modules: [
+        KeysModule.self,
+        URLModule.self
+    ])
+}
 
+CFRunLoopRun()

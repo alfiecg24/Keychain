@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310BC609290D10FE0059D04A /* CommandLineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BC608290D10FE0059D04A /* CommandLineParser.swift */; };
+		310BC60B290D11C20059D04A /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BC60A290D11C20059D04A /* Modules.swift */; };
 		315E7757290C14CA0069A47B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E7756290C14CA0069A47B /* main.swift */; };
+		315E775E290C17E30069A47B /* SoftwareVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E775D290C17E30069A47B /* SoftwareVersion.swift */; };
+		315E7761290C6AE30069A47B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 315E7760290C6AE30069A47B /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +27,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		315E7753290C14CA0069A47B /* Keychain */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Keychain; sourceTree = BUILT_PRODUCTS_DIR; };
+		310BC608290D10FE0059D04A /* CommandLineParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineParser.swift; sourceTree = "<group>"; };
+		310BC60A290D11C20059D04A /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
+		315E7753290C14CA0069A47B /* keychain */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = keychain; sourceTree = BUILT_PRODUCTS_DIR; };
 		315E7756290C14CA0069A47B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		315E775D290C17E30069A47B /* SoftwareVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareVersion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				315E7761290C6AE30069A47B /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,7 +57,7 @@
 		315E7754290C14CA0069A47B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				315E7753290C14CA0069A47B /* Keychain */,
+				315E7753290C14CA0069A47B /* keychain */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				315E7756290C14CA0069A47B /* main.swift */,
+				315E775D290C17E30069A47B /* SoftwareVersion.swift */,
+				310BC608290D10FE0059D04A /* CommandLineParser.swift */,
+				310BC60A290D11C20059D04A /* Modules.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -78,8 +89,11 @@
 			dependencies = (
 			);
 			name = Keychain;
+			packageProductDependencies = (
+				315E7760290C6AE30069A47B /* SwiftSoup */,
+			);
 			productName = Keychain;
-			productReference = 315E7753290C14CA0069A47B /* Keychain */;
+			productReference = 315E7753290C14CA0069A47B /* keychain */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -106,6 +120,9 @@
 				Base,
 			);
 			mainGroup = 315E774A290C14CA0069A47B;
+			packageReferences = (
+				315E775F290C6AE30069A47B /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 315E7754290C14CA0069A47B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -121,6 +138,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				315E7757290C14CA0069A47B /* main.swift in Sources */,
+				310BC60B290D11C20059D04A /* Modules.swift in Sources */,
+				315E775E290C17E30069A47B /* SoftwareVersion.swift in Sources */,
+				310BC609290D10FE0059D04A /* CommandLineParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +266,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 76V43E9CWT;
 				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "$(SRCROOT)/Keychain/Info.plist";
+				PRODUCT_NAME = keychain;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -257,7 +278,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 76V43E9CWT;
 				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "$(SRCROOT)/Keychain/Info.plist";
+				PRODUCT_NAME = keychain;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -284,6 +306,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		315E775F290C6AE30069A47B /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		315E7760290C6AE30069A47B /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 315E775F290C6AE30069A47B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 315E774B290C14CA0069A47B /* Project object */;
 }
