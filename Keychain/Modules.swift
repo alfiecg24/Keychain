@@ -76,7 +76,7 @@ class KeysModule: CommandLineModule {
         let Software = SoftwareVersion(version: deviceVersion, deviceIdentifier: deviceIdentifier)
         let keys = Software.fetchFirmwareKeys()
         if keys.count == 0 {
-            print("No keys were returned. This usually means that this device/version combination doesn't exist")
+            print("No keys were returned. This usually means that this device/version combination has no keys available.")
             exit(1)
         }
         print("\n")
