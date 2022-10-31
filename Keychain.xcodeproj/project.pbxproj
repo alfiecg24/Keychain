@@ -9,9 +9,17 @@
 /* Begin PBXBuildFile section */
 		310BC609290D10FE0059D04A /* CommandLineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BC608290D10FE0059D04A /* CommandLineParser.swift */; };
 		310BC60B290D11C20059D04A /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310BC60A290D11C20059D04A /* Modules.swift */; };
+		310E56AB290DD8C700F8420E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 310E56AA290DD8C700F8420E /* SwiftSoup */; };
+		310E56AD290DD96700F8420E /* ImageChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310E56AC290DD96700F8420E /* ImageChoiceView.swift */; };
+		310E56AF290DDE1300F8420E /* SoftwareVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310E56AE290DDE1300F8420E /* SoftwareVersion.swift */; };
+		311B827B290DCE440072CE01 /* KeychainAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B827A290DCE440072CE01 /* KeychainAppApp.swift */; };
+		311B827D290DCE440072CE01 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311B827C290DCE440072CE01 /* InputView.swift */; };
+		311B827F290DCE450072CE01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311B827E290DCE450072CE01 /* Assets.xcassets */; };
+		311B8282290DCE450072CE01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311B8281290DCE450072CE01 /* Preview Assets.xcassets */; };
 		315E7757290C14CA0069A47B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E7756290C14CA0069A47B /* main.swift */; };
 		315E775E290C17E30069A47B /* SoftwareVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E775D290C17E30069A47B /* SoftwareVersion.swift */; };
 		315E7761290C6AE30069A47B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 315E7760290C6AE30069A47B /* SwiftSoup */; };
+		316961F3290EC3F900BD5054 /* IPSW-API-Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316961F2290EC3F900BD5054 /* IPSW-API-Response.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,12 +37,30 @@
 /* Begin PBXFileReference section */
 		310BC608290D10FE0059D04A /* CommandLineParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineParser.swift; sourceTree = "<group>"; };
 		310BC60A290D11C20059D04A /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
+		310E56AC290DD96700F8420E /* ImageChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChoiceView.swift; sourceTree = "<group>"; };
+		310E56AE290DDE1300F8420E /* SoftwareVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareVersion.swift; sourceTree = "<group>"; };
+		311B8278290DCE440072CE01 /* KeychainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeychainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		311B827A290DCE440072CE01 /* KeychainAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAppApp.swift; sourceTree = "<group>"; };
+		311B827C290DCE440072CE01 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		311B827E290DCE450072CE01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		311B8281290DCE450072CE01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		311B8283290DCE450072CE01 /* KeychainApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeychainApp.entitlements; sourceTree = "<group>"; };
+		311B82BB290DD0860072CE01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		315E7753290C14CA0069A47B /* keychain */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = keychain; sourceTree = BUILT_PRODUCTS_DIR; };
 		315E7756290C14CA0069A47B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		315E775D290C17E30069A47B /* SoftwareVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareVersion.swift; sourceTree = "<group>"; };
+		316961F2290EC3F900BD5054 /* IPSW-API-Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IPSW-API-Response.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		311B8275290DCE440072CE01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				310E56AB290DD8C700F8420E /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		315E7750290C14CA0069A47B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,11 +72,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310E56A9290DD8C700F8420E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		311B8279290DCE440072CE01 /* KeychainApp */ = {
+			isa = PBXGroup;
+			children = (
+				311B82BB290DD0860072CE01 /* Info.plist */,
+				311B827A290DCE440072CE01 /* KeychainAppApp.swift */,
+				311B827C290DCE440072CE01 /* InputView.swift */,
+				311B827E290DCE450072CE01 /* Assets.xcassets */,
+				311B8283290DCE450072CE01 /* KeychainApp.entitlements */,
+				311B8280290DCE450072CE01 /* Preview Content */,
+				310E56AC290DD96700F8420E /* ImageChoiceView.swift */,
+				310E56AE290DDE1300F8420E /* SoftwareVersion.swift */,
+				316961F2290EC3F900BD5054 /* IPSW-API-Response.swift */,
+			);
+			path = KeychainApp;
+			sourceTree = "<group>";
+		};
+		311B8280290DCE450072CE01 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				311B8281290DCE450072CE01 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		315E774A290C14CA0069A47B = {
 			isa = PBXGroup;
 			children = (
 				315E7755290C14CA0069A47B /* Keychain */,
+				311B8279290DCE440072CE01 /* KeychainApp */,
 				315E7754290C14CA0069A47B /* Products */,
+				310E56A9290DD8C700F8420E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				315E7753290C14CA0069A47B /* keychain */,
+				311B8278290DCE440072CE01 /* KeychainApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +136,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		311B8277290DCE440072CE01 /* KeychainApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 311B8286290DCE450072CE01 /* Build configuration list for PBXNativeTarget "KeychainApp" */;
+			buildPhases = (
+				311B8274290DCE440072CE01 /* Sources */,
+				311B8275290DCE440072CE01 /* Frameworks */,
+				311B8276290DCE440072CE01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeychainApp;
+			packageProductDependencies = (
+				310E56AA290DD8C700F8420E /* SwiftSoup */,
+			);
+			productName = KeychainApp;
+			productReference = 311B8278290DCE440072CE01 /* KeychainApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		315E7752290C14CA0069A47B /* Keychain */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 315E775A290C14CA0069A47B /* Build configuration list for PBXNativeTarget "Keychain" */;
@@ -87,6 +167,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				31A4FF63290DD7DC00634392 /* PBXTargetDependency */,
 			);
 			name = Keychain;
 			packageProductDependencies = (
@@ -106,6 +187,9 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					311B8277290DCE440072CE01 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
 					315E7752290C14CA0069A47B = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -128,11 +212,36 @@
 			projectRoot = "";
 			targets = (
 				315E7752290C14CA0069A47B /* Keychain */,
+				311B8277290DCE440072CE01 /* KeychainApp */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		311B8276290DCE440072CE01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				311B8282290DCE450072CE01 /* Preview Assets.xcassets in Resources */,
+				311B827F290DCE450072CE01 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		311B8274290DCE440072CE01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				310E56AF290DDE1300F8420E /* SoftwareVersion.swift in Sources */,
+				311B827D290DCE440072CE01 /* InputView.swift in Sources */,
+				316961F3290EC3F900BD5054 /* IPSW-API-Response.swift in Sources */,
+				310E56AD290DD96700F8420E /* ImageChoiceView.swift in Sources */,
+				311B827B290DCE440072CE01 /* KeychainAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		315E774F290C14CA0069A47B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,7 +255,72 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		31A4FF63290DD7DC00634392 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 31A4FF62290DD7DC00634392 /* SwiftSoup */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		311B8284290DCE450072CE01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KeychainApp/KeychainApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KeychainApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 76V43E9CWT;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KeychainApp/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alfie.KeychainApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		311B8285290DCE450072CE01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KeychainApp/KeychainApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KeychainApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 76V43E9CWT;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KeychainApp/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alfie.KeychainApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		315E7758290C14CA0069A47B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -287,6 +461,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		311B8286290DCE450072CE01 /* Build configuration list for PBXNativeTarget "KeychainApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				311B8284290DCE450072CE01 /* Debug */,
+				311B8285290DCE450072CE01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		315E774E290C14CA0069A47B /* Build configuration list for PBXProject "Keychain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -319,7 +502,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		310E56AA290DD8C700F8420E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 315E775F290C6AE30069A47B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		315E7760290C6AE30069A47B /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 315E775F290C6AE30069A47B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		31A4FF62290DD7DC00634392 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 315E775F290C6AE30069A47B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
