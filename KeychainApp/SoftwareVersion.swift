@@ -8,6 +8,7 @@
 import Foundation
 import SwiftSoup
 import Darwin
+import Alamofire
 
 enum KeyTypes {
     case iv
@@ -83,150 +84,143 @@ func getPZBPath() -> String {
     return ""
 }
 
+enum FetchStatus {
+case success
+case error
+}
+
 struct SoftwareVersion {
     var version: String
     var deviceIdentifier: String
     
-    func fetchAPIResponse(completion: @escaping (IPSWAPIResponse)->()) throws {
-        guard let url = URL(string: ("https://api.ipsw.me/v4/device/" + self.deviceIdentifier + "?type=ipsw")) else {
-            print("Invalid URL")
-            throw Errors.invalidURL
-        }
-        
-        let task = URLSession.shared.iPSWAPIResponseTask(with: url) { decodedResponse, response, error in
-            if let decodedResponse = decodedResponse {
-                completion(decodedResponse)
+    func fetchAPIResponse(completion: @escaping (_: IPSWAPIResponse?, _:  FetchStatus) -> ()) {
+        let url = "https://api.ipsw.me/v4/device/" + self.deviceIdentifier + "?type=ipsw"
+        AF.request(url).responseDecodable(of: IPSWAPIResponse.self, decoder: JSONDecoderWithDate()) { response in
+            debugPrint(response)
+            if let data = response.value {
+                completion(data, .success)
             }
         }
-        task.resume()
+        completion(nil, .error)
     }
-    func checkIfVersionExists() -> Bool {
-        guard let url = URL(string: ("https://api.ipsw.me/v4/device/" + self.deviceIdentifier + "?type=ipsw")) else {
-            print("Invalid URL")
-            return false
-        }
-        print("URL: \(url)")
-        
-        var exists = false
-        
-        do {
-            let response = try self.fetchAPIResponse() { APIResponse in
-                for firmware in APIResponse.firmwares {
+    
+    func checkIfVersionExists(completion: @escaping (Bool) -> ()) {
+        fetchAPIResponse(completion: { data, status in
+            if let data = data {
+                for firmware in data.firmwares {
                     if firmware.version == self.version {
-                        exists = true
+                        completion(true)
                     }
                 }
             }
-        } catch { }
-        return exists
+        })
+        completion(false)
     }
     
-    func fetchIPSWURL() throws -> String {
-        guard checkIfVersionExists() else {
-            print("ERROR: device/version combination doesn't exist")
-            throw Errors.combinationDoesNotExist
-        }
+    func fetchIPSWURL(completion: @escaping (String?) -> ()) {
+        checkIfVersionExists(completion: { res in
+            if !res {
+                print("ERROR: it looks like this device/version combination doesn't exist.")
+                completion(nil)
+            }
+        })
         
-        guard let url = URL(string: ("https://api.ipsw.me/v4/device/" + self.deviceIdentifier + "?type=ipsw")) else {
-            print("Invalid URL")
-            return ""
-        }
-        
-        var ipswUrl = ""
-        
-        let task = URLSession.shared.iPSWAPIResponseTask(with: url) { decodedResponse, response, error in
-            if let decodedResponse = decodedResponse {
-                for firmware in decodedResponse.firmwares {
+        fetchAPIResponse(completion: { response, status in
+            if status != .success { completion(nil) }
+            if let response = response {
+                for firmware in response.firmwares {
                     if firmware.version == self.version {
-                        ipswUrl = firmware.url
+                        completion(firmware.version)
                     }
                 }
             }
-        }
-        task.resume()
-        
-        guard ipswUrl != "" else {
-            print("ERROR: could not fetch IPSW URL")
-            throw Errors.couldNotDecodeData
-        }
-        
-        return ipswUrl
+            
+        })
     }
     
-    func fetchAndParseBuildManifest() throws -> [String: Any] {
+    func fetchAndParseBuildManifest(completion: @escaping (_: [String : Any], _: FetchStatus) -> ()) {
         var ipswUrl = ""
-        do {
-            ipswUrl = try fetchIPSWURL()
-        } catch {
-            throw Errors.couldNotFetchData
-        }
-        guard ipswUrl != "" else {
+        fetchIPSWURL(completion: { url in
+            if url == nil { completion([String : Any](), .error) }
+            ipswUrl = url!
+        })
+        if ipswUrl == "" {
             print("ERROR: could not fetch IPSW URL")
-            throw Errors.couldNotFetchData
+            completion([String : Any](), .error)
         }
+        let buildManifestURL = ipswUrl.split(separator: "/")
+        print(buildManifestURL)
         let path = getPZBPath()
         if path == "" {
             print("pzb not found. Please make sure binary is inside /usr/local/bin")
-            throw Errors.couldNotGetPath
+            completion([String : Any](), .error)
         }
         let buildManifestName = "BuildManifest.plist"
         do {
             try runShellCommand("\(path) -g \(buildManifestName) \(ipswUrl)")
         } catch {
             print("Error with pzb")
-            throw Errors.genericError
+            completion([String : Any](), .error)
         }
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: buildManifestName))
             let buildManifest = try PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! [String: Any]
-            return buildManifest
+            completion(buildManifest, .success)
         } catch {
             print("Error: could not read BuildManifest.plist")
-            throw Errors.couldNotParseData
+            completion([String : Any](), .error)
         }
     }
 
-    func fetchBuildTrain() -> String {
-        var result = [String : Any]()
-        do {
-            result = try fetchAndParseBuildManifest()
-        } catch {
-            return ""
-        }
-        let identity: [[String : Any]] = result["BuildIdentities"] as! [[String : Any]]
-        let identityFirst = identity[0]
-        let info: [String : Any] = identityFirst["Info"]! as! [String : Any]
-        return info["BuildTrain"] as! String
+    func fetchBuildTrain(completion: @escaping (String?) -> ()) {
+        fetchAndParseBuildManifest(completion: { manifest, status in
+            if manifest.count <= 1 {
+                completion(nil)
+            }
+            let identity: [[String : Any]] = manifest["BuildIdentities"] as! [[String : Any]]
+            let identityFirst = identity[0]
+            let info: [String : Any] = identityFirst["Info"]! as! [String : Any]
+            completion((info["BuildTrain"] as! String))
+        })
+        
     }
 
-    func fetchBuildNumber() -> String {
-        var result = [String : Any]()
-        do {
-            result = try fetchAndParseBuildManifest()
-        } catch {
-            return ""
-        }
-        let identity: [[String : Any]] = result["BuildIdentities"] as! [[String : Any]]
-        let identityFirst = identity[0]
-        let info: [String : Any] = identityFirst["Info"]! as! [String : Any]
-        return info["BuildNumber"] as! String
+    func fetchBuildNumber(completion: @escaping (String?) -> ()) {
+        fetchAndParseBuildManifest(completion: { manifest, status in
+            if manifest.count <= 1 {
+                completion(nil)
+            }
+            let identity: [[String : Any]] = manifest["BuildIdentities"] as! [[String : Any]]
+            let identityFirst = identity[0]
+            let info: [String : Any] = identityFirst["Info"]! as! [String : Any]
+            completion((info["BuildNumber"] as! String))
+        })
     }
     
-    
-    
-    
-    func fetchFirmwareKeys() throws -> [FirmwareKey] {
-        if !checkIfVersionExists() {
-            print("ERROR: it looks like this device/version combination doesn't exist.")
-            exit(1)
-        }
+    func fetchFirmwareKeys(completion: @escaping ([FirmwareKey]) -> ()) {
+        checkIfVersionExists(completion: { res in
+            if !res {
+                print("ERROR: it looks like this device/version combination doesn't exist.")
+                completion([FirmwareKey]())
+            }
+        })
+        
         // Create URL of correct webpage
         let baseURL = "https://www.theiphonewiki.com"
-        let buildTrain = fetchBuildTrain()
-        let buildNumber = fetchBuildNumber()
-        guard buildTrain != "" && buildNumber != "" else {
-            throw Errors.couldNotFetchData
-        }
+        var buildTrain = ""
+        fetchBuildTrain(completion: { train in
+            if train == nil && train == "" {
+                completion([FirmwareKey]())
+            }
+            buildTrain = train!
+        })
+        var buildNumber = ""
+        fetchBuildNumber(completion: { number in
+            if number == nil && number == "" {
+                completion([FirmwareKey]())
+            }
+            buildNumber = number!
+        })
         var keysURL = "/wiki/\(buildTrain)_\(buildNumber)_(\(self.deviceIdentifier))"
         keysURL = baseURL + keysURL
         var webPage = ""
@@ -286,10 +280,10 @@ struct SoftwareVersion {
                     }
                 }
             }
-            return allKeys
+            completion(allKeys)
         } catch {
             print("Could not parse HTML")
-            throw Errors.couldNotParseData
+            completion([FirmwareKey]())
         }
     }
 }

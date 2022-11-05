@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "315E7752290C14CA0069A47B"
                BuildableName = "keychain"
-               BlueprintName = "Keychain"
+               BlueprintName = "KeychainCLI"
                ReferencedContainer = "container:Keychain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,7 +48,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "315E7752290C14CA0069A47B"
             BuildableName = "keychain"
-            BlueprintName = "Keychain"
+            BlueprintName = "KeychainCLI"
             ReferencedContainer = "container:Keychain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -79,7 +79,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "315E7752290C14CA0069A47B"
             BuildableName = "keychain"
-            BlueprintName = "Keychain"
+            BlueprintName = "KeychainCLI"
             ReferencedContainer = "container:Keychain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

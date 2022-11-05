@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct InputView: View {
     @State private var hasEnteredParameters = false
@@ -21,11 +22,15 @@ struct InputView: View {
                 TextField("Device version", text: $deviceVersion)
                 Button("Submit") {
                     let Software = SoftwareVersion(version: deviceVersion, deviceIdentifier: deviceIdentifier)
-                    do {
-                        keys = try Software.fetchFirmwareKeys()
-                    } catch {
-                        print("Error")
-                    }
+                    
+                    var keys = [FirmwareKey]()
+                    Software.fetchFirmwareKeys(completion: { keys in
+                        if keys.count <= 1 {
+                            print("Error")
+                        }
+                    })
+                    print(keys.count)
+                    
                     guard !keys.isEmpty else {
                         print("Error")
                         return

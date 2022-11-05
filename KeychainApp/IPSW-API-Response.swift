@@ -34,20 +34,12 @@ struct Board: Codable {
 // MARK: - Firmware
 struct Firmware: Codable {
     let identifier: String
-    let version, buildid, sha1Sum, md5Sum: String
-    let sha256Sum: String
+    let version, buildid: String
+    let sha1Sum, md5Sum, sha256Sum: String?
     let filesize: Int
     let url: String
     let releasedate, uploaddate: Date
     let signed: Bool
-
-    enum CodingKeys: String, CodingKey {
-        case identifier, version, buildid
-        case sha1Sum
-        case md5Sum
-        case sha256Sum
-        case filesize, url, releasedate, uploaddate, signed
-    }
 }
 
 func JSONDecoderWithDate() -> JSONDecoder {
